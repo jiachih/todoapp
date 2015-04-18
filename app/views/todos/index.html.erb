@@ -2,6 +2,8 @@
 
 <h1>Listing Todos</h1>
 <%=form_tag todos_path, method:"get" do%>
+Event status <%=text_field_tag :status%>
+<%=submit_tag "search"%>
 <%end%>
 <table>
   <thead>
@@ -17,10 +19,11 @@
       <tr>
         <td><%= todo.event %></td>
         <td><%= todo.status %></td>
-        <% if todo.status == true %>
-        <%= link_to 'done', done_todo_path(todo), method: :post %>
+        <td>
+        <td><% if todo.status == true %>
+        <%= button_to 'not done', done_todo_path(todo), method: :post %>
         <%else%>
-        <%= link_to 'not done', done_todo_path(todo), method: :post %>
+        <%= button_to 'done', done_todo_path(todo), method: :post %>
         <%end%>
 
         <td><%= link_to 'Show', todo %></td>

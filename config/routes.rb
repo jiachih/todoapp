@@ -1,11 +1,10 @@
 Rails.application.routes.draw do
-  resources :todos
+  resources :todos  do 
   member do
-   post 'done'
+  post 'done'
   end
-end
+  end
 
-  
 
   match ':controller(/:action(/:id(.:format)))', :via => :all
   # The priority is based upon order of creation: first created -> highest priority.

@@ -6,14 +6,11 @@ class TodosController < ApplicationController
   def index
     @todos = Todo.all
 
-      if params[:event].present?
-        @todos=@todos.where("event like ?","%#{params[:event]}%")
-      end
       if params[:status].present?
-
       if params[:status]=="true"
-        @todos=todos.where(:status=>true)
-      else
+        @todos=@todos.where(:status=>true)
+      end
+      if params[:status]=='false'
         @todos=@todos.where(:status => false)
       end
     end
@@ -27,9 +24,9 @@ class TodosController < ApplicationController
   def done
   @todo = Todo.find(params[:id])
   if @todo.status
-  @todo.update_attributes(status: true)
+  @todo.update_attributes(status: false)
   else
-     @todo.update_attributes(status: false)
+     @todo.update_attributes(status: true)
   end
   redirect_to(todos_path)
   end
